@@ -1,12 +1,12 @@
 var express = require("express"),
  methodOverride = require("method-override"),
- //expressSanitizer = require("express-sanitizer"),
+ expressSanitizer = require("express-sanitizer"),
  mongoose = require("mongoose"),
  bodyparser = require("body-parser"),
  app =express();
 
  app.use(bodyparser.urlencoded({extended:true}));
-// app.use(expressSanitizer());
+ app.use(expressSanitizer());
 mongoose.connect("mongodb+srv://Nikhil:man@cluster0-f1ejb.mongodb.net/test?retryWrites=true&w=majority", function(err, db) {
     if(err){
     	console.log(err);
@@ -51,7 +51,7 @@ app.get("/blogs/new",function(req,res){
 
 app.post("/blogs", function(req,res){
 	//sanitize the body content
-//	req.body.blog.body = req.sanitize(req.body.blog.body);
+	req.body.blog.body = req.sanitize(req.body.blog.body);
 	FoodB.create(req.body.blog, function(err,newblog){
 			if(err){
 				res.render("new");
@@ -86,7 +86,7 @@ app.get("/blogs/:id/edit", function(req,res){
 });
 
 app.put("/blogs/:id", function(req,res){
-//	req.body.blog.body = req.sanitize(req.body.blog.body);
+	req.body.blog.body = req.sanitize(req.body.blog.body);
 	FoodB.findByIdAndUpdate(req.params.id, req.body.blog,function(err, updatedblog){
 		if(err){
 			res.redirect("/blogs");
@@ -103,4 +103,9 @@ app.delete("/blogs/:id", function(req,res){
 		 
 	});
 });
-app.listen(process.env.PORT,process.env.IP); 
+app.listen(9000,process.env.IP,function(res, err)
+	{	
+		if(!err){
+		console.log("success");
+	}
+	}); 
