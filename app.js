@@ -18,7 +18,7 @@ app.use(methodOverride("_method"));
 
 
 //mongoose Schema
-var Schema = new mongoose.Schema({
+var SchemaZ = new mongoose.Schema({
 	title:String,
 	category:String,
 	image: String,
@@ -26,7 +26,7 @@ var Schema = new mongoose.Schema({
 	created:{type:Date, default: Date.now}
 });
 
-var Blog = mongoose.model("Blog", Schema);
+var FoodB = mongoose.model("FoodB", SchemaZ);
 
 /*Blog.create({
 	title : "New test",
@@ -38,7 +38,7 @@ app.get("/",function(req,res){
 	res.redirect("/blogs");
 });
 app.get("/blogs", function(req,res){
-	Blog.find({}, function(err,blogs){
+	FoodB.find({}, function(err,blogs){
 		if(!err){
 			res.render("main",{blogs : blogs});
 		}
@@ -52,7 +52,7 @@ app.get("/blogs/new",function(req,res){
 app.post("/blogs", function(req,res){
 	//sanitize the body content
 	req.body.blog.body = req.sanitize(req.body.blog.body);
-	Blog.create(req.body.blog, function(err,newblog){
+	FoodB.create(req.body.blog, function(err,newblog){
 			if(err){
 				res.render("new");
 			}		
@@ -63,7 +63,7 @@ app.post("/blogs", function(req,res){
 });
 
 app.get("/blogs/:id", function(req,res){
-	Blog.findById(req.params.id, function(err, founditem){
+	FoodB.findById(req.params.id, function(err, founditem){
 		if(err){
 			res.redirect("/blogs");
 		}
@@ -75,7 +75,7 @@ app.get("/blogs/:id", function(req,res){
 
 
 app.get("/blogs/:id/edit", function(req,res){
-	Blog.findById(req.params.id, function(err, founditem){
+	FoodB.findById(req.params.id, function(err, founditem){
 		if(err){
 			res.redirect("/blogs");
 		}
@@ -87,7 +87,7 @@ app.get("/blogs/:id/edit", function(req,res){
 
 app.put("/blogs/:id", function(req,res){
 	req.body.blog.body = req.sanitize(req.body.blog.body);
-	Blog.findByIdAndUpdate(req.params.id, req.body.blog,function(err, updatedblog){
+	FoodB.findByIdAndUpdate(req.params.id, req.body.blog,function(err, updatedblog){
 		if(err){
 			res.redirect("/blogs");
 		} 
@@ -98,12 +98,12 @@ app.put("/blogs/:id", function(req,res){
 });
 
 app.delete("/blogs/:id", function(req,res){
-	Blog.findByIdAndRemove(req.params.id,function(err){
+	FoodB.findByIdAndRemove(req.params.id,function(err){
 			res.redirect("/blogs");
 		 
 	});
 });
-app.listen(9000,process.env.IP,function(res, err)
+app.listen(process.env.PORT,process.env.IP,function(res, err)
 	{	
 		if(!err){
 		console.log("success");
