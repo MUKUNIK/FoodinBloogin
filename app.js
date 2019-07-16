@@ -35,9 +35,9 @@ var FoodB = mongoose.model("FoodB", SchemaZ);
 })*/ 
 //Routes
 app.get("/",function(req,res){
-	res.redirect("/blogs");
+	res.redirect("blogs");
 });
-app.get("/blogs", function(req,res){
+app.get("blogs", function(req,res){
 	FoodB.find({}, function(err,blogs){
 		if(!err){
 			res.render("main",{blogs : blogs});
