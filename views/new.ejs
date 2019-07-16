@@ -1,0 +1,26 @@
+<%include ./temp/header%>
+<div class="ui main text container segment" style="background-color: #ccccff">
+	 <div class="ui huge header">NEW BLOG</div>
+	<form class="ui form" action="/blogs" method="POST">
+  
+  <div class="field">
+    <label>Title</label>
+    <input type="text" name="blog[title]" placeholder="Title">
+  </div>
+  <div class="field">
+    <label>Category</label>
+    <input type="text" name="blog[category]" placeholder="Categorys">
+  </div>
+  <div class="field">
+    <label>Image link</label>
+    <input type="text" name="blog[image]" placeholder="Image url">
+  </div>
+  <div class="field">
+    <label>Body</label>
+    <textarea name="blog[body]"></textarea>  
+</div>
+  
+ <button class="ui inverted black button" type="submit">SUBMIT</button>
+</form>	
+</div>
+ <%include ./temp/footer%>

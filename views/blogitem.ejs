@@ -1,0 +1,23 @@
+<%include ./temp/header%>
+<div class="ui main text container segment " style="background-color: #ccccff">
+   <div class="ui huge header"><%= blogss.title%></div>
+   <div class = "ui top attached ">
+   <div class = "item">
+  <img class = "ui centered image"src="<%=blogss.image%>">
+  </div>
+  <div class = "item">
+   <span><%=blogss.created.toDateString()%></span>
+  </div>
+  <div class = "">
+   <span><%=blogss.category%></span>
+  </div>
+  <div class="description">
+  <p><%-blogss.body%></p>
+  </div>
+  <a class = "ui inverted blue button"href="/blogs/<%=blogss._id%>/edit">EDIT</a>
+  <form id = "inline"action="/blogs/<%= blogss._id%>?_method=DELETE" method = "POST">
+    <button class="ui inverted red  button">DELETE</button>
+  </form>
+</div>
+</div>
+<%include ./temp/footer%> 

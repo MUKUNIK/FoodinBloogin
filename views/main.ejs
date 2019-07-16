@@ -1,0 +1,31 @@
+<%include ./temp/header%>
+<div class="ui main text container">
+    <div class="ui top attached segment" style="background-color: #ccccff">
+      <div class="ui divided items" >
+        <%blogs.forEach(function(blog){%>
+<div class="item">
+  <div class="image">
+    <img src="<%=blog.image%>">
+  </div>
+  <div class="content">
+    <h2><%=blog.title%></h2>
+    <div class="meta">
+    <span><%=blog.created.toDateString()%></span>
+  </div>
+  <div class="description">
+  <p><%-blog.body.substring(0, 100)%>...</p>  
+  </div>
+<h3 id= "inline"><%=blog.category%>    </h3>
+  <div class="extra" id="inline">
+    
+     <a class="ui floated basic button" href="/blogs/<%= blog._id%>">READ</a>   
+  </div>
+  </div>
+    
+</div>
+<%})%>
+      </div>
+    </div>
+</div>
+
+<%include ./temp/footer%>
