@@ -103,7 +103,7 @@ app.delete("/blogs/:id", function(req,res){
 		 
 	});
 });
-app.listen(9000,process.env.IP,function(res, err)
+app.listen(process.env.PORT,process.env.IP,function(res, err)
 	{	
 		if(!err){
 		console.log("success");
